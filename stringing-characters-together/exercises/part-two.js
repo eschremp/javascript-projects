@@ -36,3 +36,5 @@ console.log(dnaTwo.slice(16, 19));
 let dnaLength = dnaTwo.length;
 console.log(`The DNA strand is ${dnaLength} characters long.`);
 //5) Just for fun, apply methods to ``dna`` and use another template literal to print, 'taco cat'.
+console.log(`${dnaTwo.slice(4,7)}O ${dnaTwo.slice(40, 43)}`);
+
