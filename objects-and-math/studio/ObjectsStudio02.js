@@ -1,13 +1,30 @@
 // Code your orbitCircumference function here:
-
+function orbitCircumference(r) {
+  return Math.round(2*Math.PI*r);
+}
 
 // Code your missionDuration function here:
-
-
+let distance;
+function missionDuration(orbitsCompleted, orbitRadius = 2000, orbitalSpeed = 28000) {
+  distance = orbitCircumference(orbitRadius)*orbitsCompleted
+  let time = (Math.round((distance/orbitalSpeed) *100))/100;
+  
+  return time;
+}
+console.log(missionDuration(5));
+console.log(`The mission will travel ${distance} km around the planet, and it will take ${missionDuration(5)} hours to complete.`)
 // Copy/paste your selectRandomEntry function here:
-
+function selectRandomEntry(arr) {
+  return arr[Math.floor(Math.random()*(arr.length))];
+}
 
 // Code your oxygenExpended function here:
+function oxygenExpended (orbitsWanted, orbitRadius, orbitalSpeed) {
+  let hrs = missionDuration(orbitsWanted, orbitRadius, orbitalSpeed)
+  let spaceWalker = selectRandomEntry(crew);
+  let oxygenNeeded = Math.round(spaceWalker.o2Used(hrs)* 1000)/1000;
+  return `${spaceWalker.name} will perform the spacewalk, which will last ${hrs} hours and require ${oxygenNeeded} kg of oxygen.`
+}
 
 
 // Candidate data & crew array.
@@ -54,5 +71,26 @@ let candidateA = {
    'astronautID':890
  };
  
- let crew = [candidateA,candidateC,candidateE];
- 
+ var crew = [candidateA,candidateC,candidateE];
+ console.log(oxygenExpended(3, 40000, 40000));
+
+ function conserveOxygen(arr) {
+  let crewMember = arr[0]
+  let lowestO2 = arr[0].o2Used(1);
+  for (let i = 1; i < arr.length; i++) {
+    let testO2 = arr[i].o2Used(1)
+    if (lowestO2 > testO2 ) {
+      lowestO2 = testO2;
+      crewMember = arr[i];
+    }
+  }
+  return crewMember;
+ }
+ console.log(conserveOxygen(crew));
+ function lowestOxygenExpended (orbitsWanted, orbitRadius, orbitalSpeed) {
+  let hrs = missionDuration(orbitsWanted, orbitRadius, orbitalSpeed)
+  let spaceWalker = conserveOxygen(crew);
+  let oxygenNeeded = Math.round(spaceWalker.o2Used(hrs)* 1000)/1000;
+  return `${spaceWalker.name} will perform the spacewalk, which will last ${hrs} hours and require ${oxygenNeeded} kg of oxygen.`
+}
+console.log(lowestOxygenExpended(3));
