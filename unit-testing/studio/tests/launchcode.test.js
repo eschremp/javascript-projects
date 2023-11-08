@@ -23,5 +23,28 @@ describe("Testing launchcode", function(){
 });
 
 describe('launchOutput', () => {
-  
+  test('When passed a number that is only divisible by 2', () => {
+    expect(launchcode.launchOutput(2)).toBe('Launch!')
+  })
+  test('When passed a number that is only divisible by 3', () => {
+    expect(launchcode.launchOutput(3)).toBe('Code!')
+  })
+  test('When passed a number that is only divisible by 5', () => {
+    expect(launchcode.launchOutput(25)).toBe('Rocks!')
+  })
+  test('When passed a number divisible by 2 and 3', () => {
+    expect(launchcode.launchOutput(6)).toBe('LaunchCode!')
+  })
+  test('When passed a number divisible by 3 and 5', () => {
+    expect(launchcode.launchOutput(15)).toBe('Code Rocks!')
+  })
+  test('When passed a number divisible by 2 and 5', () => {
+    expect(launchcode.launchOutput(10)).toBe('Launch Rocks! (Crash!!!!)')
+  })
+  test('When passed a number divisible by 2, 3, and 5', () => {
+    expect(launchcode.launchOutput(30)).toBe('LaunchCode Rocks!')
+  })
+  test('When passed a number NOT divisible by 2, 3, and 5', () => {
+    expect(launchcode.launchOutput(7)).toBe("Rutabagas! That doesn't work.")
+  })
 })
